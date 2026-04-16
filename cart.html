@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cart</title>
+</head>
+<body>
+
+<h1>Your Cart</h1>
+<div id="cart-items"></div>
+
+<script>
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+let container = document.getElementById("cart-items");
+
+cart.forEach(item => {
+  let p = document.createElement("p");
+  p.innerText = item.name + " - ₹" + item.price;
+  container.appendChild(p);
+});
+</script>
+
+</body>
+</html>
