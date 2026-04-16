@@ -6,17 +6,34 @@
 <body>
 
 <h1>Your Cart</h1>
+
 <div id="cart-items"></div>
+
+<!-- ✅ Clear Cart Button -->
+<button onclick="clearCart()">Clear Cart</button>
 
 <script>
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 let container = document.getElementById("cart-items");
 
+let total = 0;
+
 cart.forEach(item => {
   let p = document.createElement("p");
   p.innerText = item.name + " - ₹" + item.price;
   container.appendChild(p);
+  total += item.price;
 });
+
+let totalText = document.createElement("h2");
+totalText.innerText = "Total: ₹" + total;
+container.appendChild(totalText);
+
+// ✅ THIS WAS MISSING
+function clearCart() {
+  localStorage.removeItem("cart");
+  location.reload();
+}
 </script>
 
 </body>
